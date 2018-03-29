@@ -1,0 +1,21 @@
+# Markdown
+
+A language called *Markdown* is commonly used to indicate simple structure and formatting within a plain text file without cluttering it. The text is processed by a parsing program which turns it into a structured and formatted document. As a very simple example, "this \*Markdown\* text" gets displayed as "this *Markdown* text"; text that lies between asterisks gets italicized. Markdown also makes it easy to make bold text, create links, create tables, insert images, write LaTeX math, and the list goes on. See RStudio's [guide](https://rmarkdown.rstudio.com/authoring_pandoc_markdown.html) for more.
+
+We will use a language called R Markdown to write nice polished documents that fluidly incorporate R code and plots. From the RStudio menu, select File > New File > R Markdown. Make the title "Nice Example" and click OK. RStudio opens a simple example R Markdown (Rmd) file. Go to File > Knit Document (and make note of the hotkey); RStudio will prompt you to save the file, then it will display the processed example document as a webpage. In the file editor, change the first sentence under "## R Markdown" to "This is my \*first\* R Markdown document." Then press the Knit Document hotkey again to see your change implemented.
+
+R Markdown does ordinary markdown parsing, but it does a bit of extra processing first. It looks for R code to run; notice what happens with `summary(cars)` and `plot(pressure)` from the Rmd file. R Markdown displays your R code neatly, along with the interpreter's output and plots.
+
+---
+
+**Exercise:** Change "{r pressure, echo=FALSE}" to "{r}" and knit the document again. What do you think "pressure" and "echo=FALSE" were doing?
+
+---
+
+**Exercise:** At the top of the Rmd file, change "html_document" to "pdf_document" then Knit Document again.
+
+---
+
+The package [knitr](https://yihui.name/knitr/options/) is used for specifying how you want to handle each [code chunk](https://rmarkdown.rstudio.com/lesson-3.html), for instance, if you want to change the size of a plot.
+
+Glance over this [beginner's guide](http://www.stat.cmu.edu/~cshalizi/rmarkdown/) to get an idea of what else R Markdown can do.

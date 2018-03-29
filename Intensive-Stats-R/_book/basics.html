@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>R notes for S&amp;DS 220</title>
+  <meta name="description" content="These notes organize and summarize the R material you need to know for S&amp;DS 220.">
+  <meta name="generator" content="bookdown 0.6 and GitBook 2.6.7">
+
+  <meta property="og:title" content="R notes for S&amp;DS 220" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="These notes organize and summarize the R material you need to know for S&amp;DS 220." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="R notes for S&amp;DS 220" />
+  
+  <meta name="twitter:description" content="These notes organize and summarize the R material you need to know for S&amp;DS 220." />
+  
+
+<meta name="author" content="">
+
+
+<meta name="date" content="2018-03-27">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+<link rel="next" href="plotting.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R notes from S&DS 220</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a></li>
+<li class="chapter" data-level="1" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>1</b> Basics</a><ul>
+<li class="chapter" data-level="1.1" data-path="basics.html"><a href="basics.html#setting-up"><i class="fa fa-check"></i><b>1.1</b> Setting up</a></li>
+<li class="chapter" data-level="1.2" data-path="basics.html"><a href="basics.html#language-fundamentals"><i class="fa fa-check"></i><b>1.2</b> Language fundamentals</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="basics.html"><a href="basics.html#functions"><i class="fa fa-check"></i><b>1.2.1</b> Functions</a></li>
+<li class="chapter" data-level="1.2.2" data-path="basics.html"><a href="basics.html#conditionals"><i class="fa fa-check"></i><b>1.2.2</b> Conditionals</a></li>
+<li class="chapter" data-level="1.2.3" data-path="basics.html"><a href="basics.html#loops"><i class="fa fa-check"></i><b>1.2.3</b> Loops</a></li>
+<li class="chapter" data-level="1.2.4" data-path="basics.html"><a href="basics.html#workspace"><i class="fa fa-check"></i><b>1.2.4</b> Workspace</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="basics.html"><a href="basics.html#r-packages"><i class="fa fa-check"></i><b>1.3</b> R packages</a></li>
+<li class="chapter" data-level="1.4" data-path="basics.html"><a href="basics.html#more"><i class="fa fa-check"></i><b>1.4</b> More</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>2</b> Plotting</a><ul>
+<li class="chapter" data-level="2.1" data-path="plotting.html"><a href="plotting.html#histograms"><i class="fa fa-check"></i><b>2.1</b> Histograms</a></li>
+<li class="chapter" data-level="2.2" data-path="plotting.html"><a href="plotting.html#scatterplots"><i class="fa fa-check"></i><b>2.2</b> Scatterplots</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>3</b> Markdown</a></li>
+<li class="chapter" data-level="4" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>4</b> Probability</a><ul>
+<li class="chapter" data-level="4.1" data-path="probability.html"><a href="probability.html#sampling-from-a-vector"><i class="fa fa-check"></i><b>4.1</b> Sampling from a vector</a></li>
+<li class="chapter" data-level="4.2" data-path="probability.html"><a href="probability.html#four-basic-functions-for-common-distributions"><i class="fa fa-check"></i><b>4.2</b> Four basic functions for common distributions</a></li>
+<li class="chapter" data-level="4.3" data-path="probability.html"><a href="probability.html#simulation"><i class="fa fa-check"></i><b>4.3</b> Simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="statistics.html"><a href="statistics.html"><i class="fa fa-check"></i><b>5</b> Statistics</a><ul>
+<li class="chapter" data-level="5.1" data-path="statistics.html"><a href="statistics.html#binomial-statistics"><i class="fa fa-check"></i><b>5.1</b> Binomial statistics</a></li>
+<li class="chapter" data-level="5.2" data-path="statistics.html"><a href="statistics.html#more-to-come"><i class="fa fa-check"></i><b>5.2</b> More to come</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R notes for S&amp;DS 220</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="basics" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> Basics</h1>
+<div id="setting-up" class="section level2">
+<h2><span class="header-section-number">1.1</span> Setting up</h2>
+<p>R is a programming language that’s popular for data manipulation. An up-to-date R interpreter can be downloaded from <a href="https://www.r-project.org/">r-project.org</a>. After downloading and installing the interpreter, you’ll also want to download and install <a href="https://www.rstudio.com/">RStudio</a> which provides a helpful visual interface for you to work with the interpreter.</p>
+</div>
+<div id="language-fundamentals" class="section level2">
+<h2><span class="header-section-number">1.2</span> Language fundamentals</h2>
+<p>Open RStudio, and find the box labeled <strong>Console</strong>. There should be a blinking <code>|</code> to the right of the <code>&gt;</code> at the bottom of the box; if there isn’t, then click to the right of <code>&gt;</code>. Now type <code>1+2</code> and hit enter. The R interpreter reads your message and responds with <code>[1] 3</code>. Ignore the <code>[1]</code> for now; the R interpreter acted like a calculator and told us that 1+2 is 3. Next type <code>a &lt;- 1+2</code> and hit enter. This time the result of the calculation <code>1+2</code> is stored as an object called <code>a</code>. Type <code>a</code> and hit enter to see its value.</p>
+<p>Let’s see one more quick example. Type <code>1:100</code> and hit enter. This is a convenient way to create a vector comprising the integers from 1 to 100.</p>
+<hr />
+<p><strong>Exercise:</strong> Try the command <code>rep(1, 100)</code>. What does it do? Looking at the interpreter’s response to this command and to <code>1:100</code>, figure out what the <code>[1]</code> means.</p>
+<hr />
+<p><strong>Exercise:</strong> Make a guess at what R’s response to the following commands will be. Then try them and explain what you think they’re doing. (If you have no idea what to guess, just try it and see what happens.)</p>
+<ul>
+<li><code>(1:5)^2</code></li>
+<li><code>sum(1:5)</code></li>
+<li><code>sum(rep(1, 5))</code></li>
+<li><code>mean(1:5)</code></li>
+<li><code>prod(1:5)</code></li>
+<li><code>max(1:5) - min(1:5)</code></li>
+<li><code>1:4 + 3:6</code></li>
+<li><code>2 * (1:4)</code></li>
+<li><code>1:4 * 3:6</code></li>
+<li><code>log(1:4)</code></li>
+<li><code>log10(1:4)</code></li>
+<li><code>sqrt(1:4)</code></li>
+<li><code>c(1, 3, 5)</code></li>
+<li><code>c(1:4, 1, 3, 5)</code></li>
+<li><code>v &lt;- c(c(1, 3, 5), 1:4); length(v); v</code></li>
+<li><code>m &lt;- matrix(1:20, nrow=5, ncol=4); m</code></li>
+<li><code>rowSums(m)</code></li>
+<li><code>ignore this</code></li>
+<li><code># ignore this</code></li>
+<li><code>print(&quot;hello&quot;)</code></li>
+<li><code>paste(&quot;the square root of 25 is&quot;, sqrt(25)); print(&quot;hello&quot;)</code></li>
+<li><code>cat(&quot;the square root of 25 is&quot;, sqrt(25)); print(&quot;hello&quot;)</code></li>
+<li><code>cat(&quot;the square root of 25 is&quot;, sqrt(25), &quot;\n&quot;); print(&quot;hello&quot;)</code></li>
+</ul>
+<hr />
+<p>An important feature of R is the ability to easily select from a vector or matrix. Try the following (make sure you’ve run the code from the exercise above):</p>
+<ul>
+<li><code>v; v[3]; v[3:5]; v[c(1, 2, 1)]; v[-3]</code></li>
+<li><code>v[2] &lt;- 100; v</code></li>
+<li><code>m; m[1, ]</code></li>
+<li><code>m[, 2:3]</code></li>
+<li><code>m[1:2, c(2, 4)]</code></li>
+</ul>
+<div id="functions" class="section level3">
+<h3><span class="header-section-number">1.2.1</span> Functions</h3>
+<p>Both <code>rep</code> and <code>sum</code> are functions that are built-in to R, but we can also write our own functions. Give the console the following command.</p>
+<pre><code>sumsq &lt;- function(v) { return(sum(v^2)) }</code></pre>
+<p>This creates a <em>function</em> object called “sumsq” which is now available for us to use on any numerical vector (which the function will call “v” internally). It squares the vector’s entries, adds up those squared values, then gives us back the result of that calculation.</p>
+<hr />
+<p><strong>Exercise:</strong> Predict the response to <code>sumsq(1:3)</code>, then try it out to check your prediction.</p>
+<hr />
+<p>In practice, we won’t usually type our code directly into the console. Rather, we will type it into a text file so that we can more easily keep track of what we’ve done. From the RStudio menu, select File &gt; New File &gt; R Script to create an empty file. Enter the following code:</p>
+<pre><code>sumsq &lt;- function(v) {
+  return(sum(v^2))
+}
+
+avgsq &lt;- function(v) {
+  return(sumsq(v)/length(v))
+}</code></pre>
+<p>You’ve already defined <code>sumsq</code> and R remembers what it means, but now you’ve also recorded that definition so that you can easily check it, change it, or share it with others. We still need to tell the interpreter what we want <code>avgsq</code> to mean. Click and drag your cursor across the three lines of code that define <code>avgsq</code>. Then in the RStudio menu, find Code &gt; Run Selected Line(s). There should be symbols next to “Run Selected Line(s)” that tell you what its hotkey is (e.g. on a Mac, it’s Command+Enter.) Take note of this hotkey, because you’ll use it constantly when working in RStudio. Press the Run hotkey once to run the three lines of code that define <code>avgsq</code>.</p>
+<hr />
+<p><strong>Exercise:</strong> The <code>avgsq</code> function calculates the average of the squared values of a vector. Test this by running <code>avgsq</code> in the console. Suppose that what we really wanted it to do was calculate the square of the average value of a vector. Change the code so that it does this, then run <code>avgsq(1:2)</code> in the console. It gives the same number as before because the console isn’t aware that you’ve changed the definition of <code>avgsq</code>. You have to tell it. Select the code defining <code>avgsq</code> and press the hotkey to run it. Then run <code>avgsq(1:2)</code> in the console one more time to check that your new code is working as expected.</p>
+<hr />
+</div>
+<div id="conditionals" class="section level3">
+<h3><span class="header-section-number">1.2.2</span> Conditionals</h3>
+<p>Some expressions are interpreted as being either <code>TRUE</code> or <code>FALSE</code>. Run the following commands one at a time, and think about their output.</p>
+<pre><code>a
+a &lt;= 12
+a &gt; 4
+a == 4
+a == 3
+a != 3
+a != 4</code></pre>
+<p>The <code>!</code> symbol means <em>not</em>. Notice that checking for equality involves <em>two equals signs</em>.</p>
+<p>An <em>if</em> statement only runs its code if the expression between the parentheses is <code>TRUE</code>. Type the following in the bottom of your file, then run it.</p>
+<pre><code>if(a &lt; 3) {
+  print(&quot;It&#39;s strictly less than 3&quot;)
+}
+
+if(a &lt;= 3) {
+  print(&quot;It&#39;s less than or equal to 3&quot;)
+}</code></pre>
+<p>A <code>TRUE</code>/<code>FALSE</code> vector can also be used to select a subset from another vector. Try the following:</p>
+<pre><code>v &lt;- 1:20
+v &gt; 12
+v[v &gt; 12]</code></pre>
+</div>
+<div id="loops" class="section level3">
+<h3><span class="header-section-number">1.2.3</span> Loops</h3>
+<p>Type the following at the bottom of your file, then run the code.</p>
+<pre><code>for(i in 1:3) {
+  print(&#39;hello&#39;)
+}</code></pre>
+<p>This is a <em>for</em> loop. The part between <code>{</code> and <code>}</code> is called the <em>body</em> of the loop. For each element in the vector <code>1:5</code>, the interpreter runs the body of the loop. The the loop is interpreted to mean</p>
+<pre><code>i &lt;- 1
+print(&#39;hello&#39;)
+
+i &lt;- 2
+print(&#39;hello&#39;)
+
+i &lt;- 3
+print(&#39;hello&#39;)</code></pre>
+<p>Because <code>i</code> doesn’t show up in the body, the loop does the exact same thing each time through. Change the code as follows, and run it again.</p>
+<pre><code>for(i in 1:3) {
+  print(rep(&quot;hello&quot;, i))
+}</code></pre>
+<p>When the number of iterations needed isn’t known ahead of time, a <em>while</em> loop is a good alternative to a <em>for</em> loop. The body of the <em>while</em> loop runs over and over as long as the expression inside the parentheses is <code>TRUE</code>. Type and run the following:</p>
+<pre><code>i &lt;- 1
+while(2^i &lt;= 1000) {
+  print(2^i)
+  i &lt;- i + 1
+}</code></pre>
+<p>Another way to end a loop is by using <code>break</code>. The following code block works just like the code above.</p>
+<pre><code>i &lt;- 1
+while(T) {
+  print(2^i)
+  i &lt;- i + 1
+  if (2^i &gt; 1000) {
+    break
+  }
+}</code></pre>
+<p>Note that the R interpreter accepts <code>T</code> and <code>F</code> to mean <code>TRUE</code> and <code>FALSE</code>.</p>
+</div>
+<div id="workspace" class="section level3">
+<h3><span class="header-section-number">1.2.4</span> Workspace</h3>
+<p>Press the Save hotkey (look at File &gt; Save to see what the hotkey is). Enter the name “example” and save the file to your Desktop folder. You have created the file “example.R” in your Desktop folder.</p>
+<p>From the RStudio menu, select Session &gt; Clear Workspace. This removes the objects you’ve defined so far. Try <code>sumsq(1:3)</code> in the console, and you will get an error.</p>
+<p>Next click Session &gt; Set Working Directory &gt; Choose Directory. Select your Desktop folder (it may already be selected), and press Enter. Run the command <code>source(&quot;example.R&quot;)</code> in the console; this command tells the interpreter to read in the entire contents of the R Script file <em>example.R</em> which it expects to find in the current <em>working directory</em>. Run <code>sumsq(1:3)</code> in the console to verify.</p>
+<p>Finally, click the tiny “x” to the right of where it says “example.R” in RStudio to close the file. In a file browser, delete the file <em>example.R</em>; we won’t be needing it anymore.</p>
+</div>
+</div>
+<div id="r-packages" class="section level2">
+<h2><span class="header-section-number">1.3</span> R packages</h2>
+<p>So far, you’ve been using “base R.” It has a variety of built-in functions like <code>sum</code> that make it a relatively convenient language for data analysis. Our <code>sumsq</code> and <code>avgsq</code> functions are built “on top” of base R and they are tools that might make some data analysis tasks ever-so-slightly more convenient. In fact, over the past decades, countless R users have been writing code that they find convenient and sharing it with the world by putting it in an R <em>package</em>. A few packages are automatically installed along with the R interpreter when you download it; one of these is the <em>MASS</em> package. Try the following commands in the console in this order:</p>
+<ul>
+<li><code>Traffic</code></li>
+<li><code>MASS::Traffic</code></li>
+<li><code>Traffic</code></li>
+<li><code>library(MASS)</code></li>
+<li><code>Traffic</code></li>
+</ul>
+<p>There is an object called “Traffic” stored in the <em>MASS</em> package. It can be accessed by either reaching selectively into <em>MASS</em> (with <code>MASS::Traffic</code>) or after dumping the entire contents of <em>MASS</em> into your <em>environment</em> a.k.a. <em>workspace</em> (with <code>library(MASS)</code>).</p>
+<p>The vast majority of the publicly available R packages need to be downloaded before they can be used. Over ten thousand of those packages (including the most commonly used ones) are hosted by a group called the Comprehensive R Archive Network (CRAN). Those packages can be easily downloaded right from the console. As an example, use <code>install.packages(&quot;rmarkdown&quot;)</code> to download the <em>rmarkdown</em> package; any other packages that <em>rmarkdown</em> uses will also be installed automatically by this command.</p>
+<hr />
+<p><strong>Exercise:</strong> To be more precise, you just installed <em>the current version</em> of the <em>rmarkdown</em> package. Look at the interpreter’s output and figure out what version number of <em>rmarkdown</em> was installed.</p>
+<hr />
+</div>
+<div id="more" class="section level2">
+<h2><span class="header-section-number">1.4</span> More</h2>
+<p>We’ve covered some of the very basics here; you will learn much more as we go. A nice <em>cheat sheet</em> summarizing R fundamentals is available <a href="http://github.com/rstudio/cheatsheets/raw/master/base-r.pdf">here</a>.</p>
+<p>If you want more information about any object (e.g. a function or a dataset) in base R or in a package that you’ve loaded into your environment, click on RStudio’s <strong>Help</strong> tab, type the name of the object, and press enter. Related commands are often bundled together into the same help file.</p>
+<hr />
+<p><strong>Exercise:</strong> Read about the “file” argument in the help page for <code>read.csv</code>; the file’s location can be specified with either a path on your computer or a url. Run the following code to read in a csv file from the web.</p>
+<pre><code>d &lt;- read.csv(&quot;http://www.stat.yale.edu/~jtc5/220/data/CEO_Salary_2012.csv&quot;)</code></pre>
+<p>Then download the file “CEO_Salary_2012.csv” onto your computer and use <code>read.csv</code> again to read it in locally.</p>
+<hr />
+<p>You can also search the web for answers to your questions and if necessary post to <a href="https://stackoverflow.com/tags/r/info">StackOverflow</a>.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="plotting.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["Intensive-Stats-R.pdf", "Intensive-Stats-R.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

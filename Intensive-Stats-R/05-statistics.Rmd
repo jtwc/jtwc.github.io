@@ -1,0 +1,26 @@
+# Statistics
+
+## Binomial statistics
+
+Suppose a casino game involves flipping a coin that they claim is fair, i.e. that heads and tails are equally probable. The casino wins the bet when which tails is flipped, while you win if it's heads. You play the game 1000 times and observe only 429 heads. Should you doubt the casino's claim that the coin is fair? We could use `pbinom` to calculate the exact significance probability, but let's instead try `prop.test` which uses the Normal approximation with a continuity correction to give a significance probability and confidence interval. (Add the parameter `correct=F` to suppress the continuity correction.)
+```{r}
+prop.test(429, 1000, alternative="less")
+```
+If the coin really is fair, there's less than a one in ten thousand chance of an outcome at least this small. If the casino had instead claimed that the coin had heads probability of .48, you could test that by adding the parameter `p=.48` to the function call.
+
+To test the other extreme with `prop.test`, use `alternative="greater"`; a two-sided test is used by default if you do not specify a value for `alternative`.
+
+There are a variety of opinions about how to calculate confidence intervals for a Binomial success probability. A number of methods are provided by `binom.confint` in the `binom` package. (Do `install.packages("binom")` before running the code below.)
+```{r}
+library(binom)
+binom.confint(429, 1000, conf.level=0.95, methods="all")
+```
+
+---
+
+**Exercise:** Run a two-sided `prop.test` to see which of the `binom.confint` methods it agrees with.
+
+---
+
+## More to come
+

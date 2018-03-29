@@ -1,0 +1,214 @@
+# Basics
+
+
+## Setting up
+
+R is a programming language that's popular for data manipulation. An up-to-date R interpreter can be downloaded from [r-project.org](https://www.r-project.org/). After downloading and installing the interpreter, you'll also want to download and install [RStudio](https://www.rstudio.com/) which provides a helpful visual interface for you to work with the interpreter.
+
+## Language fundamentals
+
+Open RStudio, and find the box labeled **Console**. There should be a blinking `|` to the right of the `>` at the bottom of the box; if there isn't, then click to the right of `>`. Now type `1+2` and hit enter. The R interpreter reads your message and responds with `[1] 3`. Ignore the `[1]` for now; the R interpreter acted like a calculator and told us that 1+2 is 3. Next type `a <- 1+2` and hit enter. This time the result of the calculation `1+2` is stored as an object called `a`. Type `a` and hit enter to see its value.
+
+Let's see one more quick example. Type `1:100` and hit enter. This is a convenient way to create a vector comprising the integers from 1 to 100.
+
+---
+
+**Exercise:** Try the command `rep(1, 100)`. What does it do? Looking at the interpreter's response to this command and to `1:100`, figure out what the `[1]` means.
+
+---
+
+**Exercise:** Make a guess at what R's response to the following commands will be. Then try them and explain what you think they're doing. (If you have no idea what to guess, just try it and see what happens.)
+
+- `(1:5)^2`
+- `sum(1:5)`
+- `sum(rep(1, 5))`
+- `mean(1:5)`
+- `prod(1:5)`
+- `max(1:5) - min(1:5)`
+- `1:4 + 3:6`
+- `2 * (1:4)`
+- `1:4 * 3:6`
+- `log(1:4)`
+- `log10(1:4)`
+- `sqrt(1:4)`
+- `c(1, 3, 5)`
+- `c(1:4, 1, 3, 5)`
+- `v <- c(c(1, 3, 5), 1:4); length(v); v`
+- `m <- matrix(1:20, nrow=5, ncol=4); m`
+- `rowSums(m)`
+- `ignore this`
+- `# ignore this`
+- `print("hello")`
+- `paste("the square root of 25 is", sqrt(25)); print("hello")`
+- `cat("the square root of 25 is", sqrt(25)); print("hello")`
+- `cat("the square root of 25 is", sqrt(25), "\n"); print("hello")`
+
+---
+
+An important feature of R is the ability to easily select from a vector or matrix. Try the following (make sure you've run the code from the exercise above):
+
+- `v; v[3]; v[3:5]; v[c(1, 2, 1)]; v[-3]`
+- `v[2] <- 100; v`
+- `m; m[1, ]`
+- `m[, 2:3]`
+- `m[1:2, c(2, 4)]`
+
+### Functions
+
+Both `rep` and `sum` are functions that are built-in to R, but we can also write our own functions. Give the console the following command.
+```
+sumsq <- function(v) { return(sum(v^2)) }
+```
+This creates a *function* object called "sumsq" which is now available for us to use on any numerical vector (which the function will call "v" internally). It squares the vector's entries, adds up those squared values, then gives us back the result of that calculation.
+
+---
+
+**Exercise:** Predict the response to `sumsq(1:3)`, then try it out to check your prediction.
+
+---
+
+In practice, we won't usually type our code directly into the console. Rather, we will type it into a text file so that we can more easily keep track of what we've done. From the RStudio menu, select File > New File > R Script to create an empty file. Enter the following code:
+```
+sumsq <- function(v) {
+  return(sum(v^2))
+}
+
+avgsq <- function(v) {
+  return(sumsq(v)/length(v))
+}
+```
+You've already defined `sumsq` and R remembers what it means, but now you've also recorded that definition so that you can easily check it, change it, or share it with others. We still need to tell the interpreter what we want `avgsq` to mean. Click and drag your cursor across the three lines of code that define `avgsq`. Then in the RStudio menu, find Code > Run Selected Line(s). There should be symbols next to "Run Selected Line(s)" that tell you what its hotkey is (e.g. on a Mac, it's Command+Enter.) Take note of this hotkey, because you'll use it constantly when working in RStudio. Press the Run hotkey once to run the three lines of code that define `avgsq`.
+
+---
+
+**Exercise:** The `avgsq` function calculates the average of the squared values of a vector. Test this by running `avgsq` in the console. Suppose that what we really wanted it to do was calculate the square of the average value of a vector. Change the code so that it does this, then run `avgsq(1:2)` in the console. It gives the same number as before because the console isn't aware that you've changed the definition of `avgsq`. You have to tell it. Select the code defining `avgsq` and press the hotkey to run it. Then run `avgsq(1:2)` in the console one more time to check that your new code is working as expected.
+
+---
+
+### Conditionals
+
+Some expressions are interpreted as being either `TRUE` or `FALSE`. Run the following commands one at a time, and think about their output.
+```
+a
+a <= 12
+a > 4
+a == 4
+a == 3
+a != 3
+a != 4
+```
+The `!` symbol means *not*. Notice that checking for equality involves *two equals signs*.
+
+An *if* statement only runs its code if the expression between the parentheses is `TRUE`. Type the following in the bottom of your file, then run it.
+```
+if(a < 3) {
+  print("It's strictly less than 3")
+}
+
+if(a <= 3) {
+  print("It's less than or equal to 3")
+}
+```
+
+A `TRUE`/`FALSE` vector can also be used to select a subset from another vector. Try the following:
+```
+v <- 1:20
+v > 12
+v[v > 12]
+```
+
+### Loops
+
+Type the following at the bottom of your file, then run the code.
+```
+for(i in 1:3) {
+  print('hello')
+}
+```
+This is a *for* loop. The part between `{` and `}` is called the *body* of the loop. For each element in the vector `1:5`, the interpreter runs the body of the loop. The the loop is interpreted to mean
+```
+i <- 1
+print('hello')
+
+i <- 2
+print('hello')
+
+i <- 3
+print('hello')
+```
+Because `i` doesn't show up in the body, the loop does the exact same thing each time through. Change the code as follows, and run it again.
+```
+for(i in 1:3) {
+  print(rep("hello", i))
+}
+```
+
+When the number of iterations needed isn't known ahead of time, a *while* loop is a good alternative to a *for* loop. The body of the *while* loop runs over and over as long as the expression inside the parentheses is `TRUE`. Type and run the following:
+```
+i <- 1
+while(2^i <= 1000) {
+  print(2^i)
+  i <- i + 1
+}
+```
+
+Another way to end a loop is by using `break`. The following code block works just like the code above.
+```
+i <- 1
+while(T) {
+  print(2^i)
+  i <- i + 1
+  if (2^i > 1000) {
+    break
+  }
+}
+```
+Note that the R interpreter accepts `T` and `F` to mean `TRUE` and `FALSE`.
+
+### Workspace
+
+Press the Save hotkey (look at File > Save to see what the hotkey is). Enter the name "example" and save the file to your Desktop folder. You have created the file "example.R" in your Desktop folder.
+
+From the RStudio menu, select Session > Clear Workspace. This removes the objects you've defined so far. Try `sumsq(1:3)` in the console, and you will get an error.
+
+Next click Session > Set Working Directory > Choose Directory. Select your Desktop folder (it may already be selected), and press Enter. Run the command `source("example.R")` in the console; this command tells the interpreter to read in the entire contents of the R Script file *example.R* which it expects to find in the current *working directory*. Run `sumsq(1:3)` in the console to verify.
+
+Finally, click the tiny "x" to the right of where it says "example.R" in RStudio to close the file. In a file browser, delete the file *example.R*; we won't be needing it anymore.
+
+## R packages
+
+So far, you've been using "base R." It has a variety of built-in functions like `sum` that make it a relatively convenient language for data analysis. Our `sumsq` and `avgsq` functions are built "on top" of base R and they are tools that might make some data analysis tasks ever-so-slightly more convenient. In fact, over the past decades, countless R users have been writing code that they find convenient and sharing it with the world by putting it in an R *package*. A few packages are automatically installed along with the R interpreter when you download it; one of these is the *MASS* package. Try the following commands in the console in this order:
+
+- `Traffic`
+- `MASS::Traffic`
+- `Traffic`
+- `library(MASS)`
+- `Traffic`
+
+There is an object called "Traffic" stored in the *MASS* package. It can be accessed by either reaching selectively into *MASS* (with `MASS::Traffic`) or after dumping the entire contents of *MASS* into your *environment* a.k.a. *workspace* (with `library(MASS)`).
+
+The vast majority of the publicly available R packages need to be downloaded before they can be used. Over ten thousand of those packages (including the most commonly used ones) are hosted by a group called the Comprehensive R Archive Network (CRAN). Those packages can be easily downloaded right from the console. As an example, use `install.packages("rmarkdown")` to download the *rmarkdown* package; any other packages that *rmarkdown* uses will also be installed automatically by this command.
+
+---
+
+**Exercise:** To be more precise, you just installed *the current version* of the *rmarkdown* package. Look at the interpreter's output and figure out what version number of *rmarkdown* was installed.
+
+---
+
+## More
+
+We've covered some of the very basics here; you will learn much more as we go. A nice *cheat sheet* summarizing R fundamentals is available [here](http://github.com/rstudio/cheatsheets/raw/master/base-r.pdf).
+
+If you want more information about any object (e.g. a function or a dataset) in base R or in a package that you've loaded into your environment, click on RStudio's **Help** tab, type the name of the object, and press enter. Related commands are often bundled together into the same help file.
+
+---
+
+**Exercise:** Read about the "file" argument in the help page for `read.csv`; the file's location can be specified with either a path on your computer or a url. Run the following code to read in a csv file from the web.
+```
+d <- read.csv("http://www.stat.yale.edu/~jtc5/220/data/CEO_Salary_2012.csv")
+```
+Then download the file "CEO_Salary_2012.csv" onto your computer and use `read.csv` again to read it in locally.
+
+---
+
+You can also search the web for answers to your questions and if necessary post to [StackOverflow](https://stackoverflow.com/tags/r/info).

@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1521567767219.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1507952608",
+    "id" : "97FEF614",
+    "lastKnownWriteTime" : 1522181695,
+    "last_content_update" : 1522181695897,
+    "path" : "~/Dropbox/STAT220/Intensive-Stats-R/01-basics.Rmd",
+    "project_path" : "01-basics.Rmd",
+    "properties" : {
+        "cursorPosition" : "11,143",
+        "scrollLine" : "10"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

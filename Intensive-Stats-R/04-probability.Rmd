@@ -1,0 +1,76 @@
+# Probability
+
+## Sampling from a vector
+
+The `sample` command draws a specified number of entries from a vector. If you want to randomly pick three (numbered) students from a class of ten, you can run `sample(1:10, 3)`.
+
+Sometimes you want to draw *with replacement*, meaning that each pick ignores what has happened previously; after each draw, you *replace* your pick before drawing again. For instance, if you want to randomly assign twenty tasks to four employees, you could run `sample(1:4, 20, replace=TRUE)`. If you want employee number 1 to have twice as large of a probability as the other employees of being assigned each task, you'll need to use the `prob` parameter: `sample(1:4, 20, replace=TRUE, prob=c(2, 1, 1, 1)`.
+
+## Four basic functions for common distributions
+
+For several families of distributions, the R language has four built-in functions corresponding to:
+
+- Density (pdf for continuous distributions, pmf for discrete distributions)
+- Probability less than or equal (cdf)
+- Quantile (inverse cdf)
+- Random sample
+
+The function names follow the pattern "d," "p," "q," or "r" followed by an abbreviation for the family of distributions. For example, the probability of getting four heads out of ten flips of a coin with heads-probability .25 is calculated by the R command `dbinom(4, 10, .25)`. The probability of four or fewer heads is `pbinom(4, 10, .25)`. Next, `qbinom(.95, 10, .25)` tells you the smallest number of heads for which there is no more than .05 probability of exceeding. Finally, `rbinom(100, 10, .25)` simulates one hundred experiments of the twenty coin flips and tells you how many heads it got in each trial.
+
+For Normal distributions, the abbreviation is "norm." If no additional parameters are specified, it assumes you want mean zero and standard deviation one. Otherwise use the second and third parameters (named "mean" and "sd").
+
+Binomial distributions are discrete whereas Normal distributions are continuous. The four functions work in both cases.
+```{r}
+plot(0:10, dbinom(0:10, 10, .25))
+curve(dnorm(x, mean=10*.25, sd=sqrt(10*.25*.75)), from=0, to=10, add=TRUE, col=2)
+```
+
+Another family built in to R is the uniform distributions, abbreviated "unif." In particular, `runif(n)` generates `n` independent draws from the Uniform(0, 1) distribution.
+
+Before asking the R interpreter to perform a random draw, you might want to use the `set.seed` command with any integer as the input. This sets a "starting point" for the random draw so that the exact same "random" results can be replicated by the code at a later time or by another computer.
+```{r}
+runif(5)
+set.seed(1)
+runif(5)
+```
+When you run the above code, my first `runif(5)` output will differ from yours, but our draws will agree after we've both set the seed to 1.
+
+## Simulation
+
+In a room of 100 people, is it likely that you will be able to find a birthday shared by two people? What about three people? Four? Let's pretend that leap-years don't exist, that each day of the year is equally likely to be a person's birthday, and that the people's birthdays are independent. Now we draw random birthdays accordingly.
+```{r}
+n <- 100
+set.seed(4)
+b <- sample(1:365, n, replace=TRUE)
+b
+table(b)
+max(table(b))
+```
+The `table` command scans through a vector and counts the number of occurrences of each value. The `max` tells us that there is at least one birthday shared by three people but no birthdays are shared by four or more.
+
+But this is a single run of the experiment. To get a better idea of the range of possible outcomes and how probable they are, we want to run the experiment a large number of times.
+```{r}
+nsim <- 10000
+results <- rep(NA, nsim)
+for(i in 1:nsim) {
+  b <- sample(1:365, n, replace=TRUE)
+  results[i] <- max(table(b))
+}
+table(results)/nsim
+```
+
+---
+
+**Exercise:** The following simulation code runs fine, but it doesn't perform a valid simulation. Identify the TWO flaws and fix them.
+```
+n <- 100
+nsim <- 10000
+results <- rep(NA, nsim)
+for(i in 1:nsim) {
+  set.seed(3)
+  results <- max(rnorm(n))
+}
+```
+Run your fixed version of the simulation and plot a `truehist` of the results.
+
+---

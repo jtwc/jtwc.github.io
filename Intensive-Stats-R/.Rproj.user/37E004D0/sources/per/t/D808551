@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1521578447989.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2180120344",
+    "id" : "D808551",
+    "lastKnownWriteTime" : 1522106643,
+    "last_content_update" : 1522172125699,
+    "path" : "~/Dropbox/STAT220/Intensive-Stats-R/04-probability.Rmd",
+    "project_path" : "04-probability.Rmd",
+    "properties" : {
+        "cursorPosition" : "63,120",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
